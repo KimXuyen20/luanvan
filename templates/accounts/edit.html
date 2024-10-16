@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="cache-control" content="max-age=604800" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <title>Website title - bootstrap html template</title>
+        
+        <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'css/docs.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'css/docs.min.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        
+        <!-- custom style -->
+        <link href="{% static 'css/ui.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'css/responsive.css' %}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+        </head>
+<body>
+    {% block setting %}  
+    <section class="section-pagetop bg">
+        <div class="container">
+            <h2 class="title-page">Edit account</h2>
+        </div> <!-- container //  -->
+        </section>
+    <div class="container">
+
+        <div class="row">
+            <aside class="col-md-3">
+                <ul class="list-group">
+                    <a class="list-group-item " href="{% url 'dashboard'%}"> Account overview  </a>		
+                    <a class="list-group-item active" href="{% url 'edit'%}">Edit Profile </a>
+                    {% comment %} <a class="list-group-item active" href="#"> My Selling Items </a>
+                    <a class="list-group-item" href="#"> Received orders </a> {% endcomment %}
+                  
+                </ul>
+                <br>
+                <a class="btn btn-bd-purple btn-block" href="{% url 'logout' %}"><i class="fa fa-power-off"></i><span class="text">Log out</span></a>
+            </aside> <!-- col.// -->
+            <main class="col-md-9">
+                    <article class="card">
+                        <header class="card-header">
+                            <strong class="d-inline-block mr-3">Logged in as: </strong>
+                            <span>{{user.last_name}}</span> 
+                        </header>
+                <div class="card-body">   
+                    {% comment %} <div> 
+                        <img src="{{userprofile.profile_picture.url}}  " alt="Profile Picture" width="100" style="border-radius">
+                    </div>     {% endcomment %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="mx-1 mx-md-4" method="POST" action="{% url 'register' %}">
+                                {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="col form-group col-md-6">
+                                        <label>First name</label>
+                                        {{ user_form.first_name }}
+                                    </div>
+                                    <div class="col form-group col-md-6">
+                                        <label>Last name</label>
+                                        {{ user_form.last_name }}
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Phone Number</label>
+                                        {{ user_form.phone_number }}
+                                        
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Profile Picture</label>
+                                        {{ profile_form.photo }}
+                                    
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Address</label>
+                                        {{ profile_form.address }}
+                                    
+                                    </div>
+                                    <div class="form-group col-md-6" >
+                                        <label>City</label>
+                                        {{ profile_form.city }}
+                                    
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Country</label>
+                                        {{ profile_form.country }}
+                                    
+                                    </div>
+                                </div>
+                         
+                                <input type="submit" value="Save" class="btn btn-bd-purple">        
+
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>	
+            </article> <!-- card.// -->
+        
+            </main> <!-- col.// -->
+        </div>
+        
+        
+        </div> <!-- container .//  -->
+    {% endblock setting %}   
+    
+</body>
+</html>
