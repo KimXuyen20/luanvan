@@ -14,7 +14,8 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ['first_name', 'last_name', 'phone_number', 'email', 'password']
+        fields = ['first_name', 'last_name','role', 'phone_number', 'email', 'password']
+        role = forms.ChoiceField(choices=Account.role, widget=forms.RadioSelect)
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
@@ -37,9 +38,11 @@ class RegistrationForm(forms.ModelForm):
             )
 
 class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = Account
-        fields = ['first_name', 'last_name','phone_number']
+        fields = ['first_name', 'last_name','phone_number','email','password']
 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)

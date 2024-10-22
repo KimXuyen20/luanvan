@@ -56,6 +56,7 @@
 					</div>
 					
 			</div>
+			
 			{% comment %} {% endcomment %}
             <form method="POST" action="{% url 'logout' %} ">
 				{% csrf_token %}
@@ -67,17 +68,19 @@
 						<ul class="dropdown-menu">
 							{% if user.is_authenticated %}
 								<li>
-									<button type="submit" class="dropdown-item">Đăng xuất</button>
+									<button type="submit" class="dropdown-item">Log Out</button>
 								</li>
 							{% else %}
-								<a class="dropdown-item" href="{% url 'login' %}">Đăng nhập</a>
-								<a class="dropdown-item" href="{% url 'register' %}">Đăng ký</a> 
+								<a class="dropdown-item" href="{% url 'login' %}">Login</a>
+								<a class="dropdown-item" href="{% url 'register' %}">Register</a> 
+								<a class="dropdown-item" href= "{% url 'registerDoctor' %}">Register Doctor</a>
 							{% endif %}
 						</ul>
 					</li>
 				</ul>
 			</form>
-			
+
+		
 			
 			</div> <!-- col.// -->
 		</div> <!-- row.// -->
